@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "prestart": "npm run lint",
     "start": "npm-run-all --parallel start-website start-server",
-    "start-website": "ng server",
+    "start-website": "ng server -o",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,8 +24,12 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "bootstrap": "^4.1.1",
+    "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",
+    "jquery": "^3.3.1",
     "nodemon": "^1.17.5",
+    "popper.js": "^1.14.3",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
