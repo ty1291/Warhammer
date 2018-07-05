@@ -19,8 +19,21 @@ const server = app.listen(4210, '127.0.0.1', () => {
   console.log(chalk.blue('Listening at http://%s:%s'), host, port);
 });
 
+// middleware to set default Content-Type
+app.use(function (req, res, next) {
+  res.setHeader('Content-Type', 'application/json');
+  next();
+});
+
 app.get('/api/test', (req, res) => {
   res.send('Hello World');
+});
+
+app.get('/api/getFactionList', (req, res) => {
+  res.send([
+    { name: 'Ultramarines' },
+    { name: 'Blood Angles'}
+  ]);
 });
 
 app.use( (req, res, next) => {

@@ -6,12 +6,12 @@
     "ng": "ng",
     "prestart": "npm run lint",
     "start": "npm-run-all --parallel start-website start-server",
-    "start-website": "ng server -o",
+    "start-website": "ng server --proxy-config proxy.config.json -o",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start-server": "nodemon ./api/server.ts"
+    "start-server": "nodemon ./api/server.ts --watch server"
   },
   "private": true,
   "dependencies": {

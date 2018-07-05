@@ -1,5 +1,7 @@
-<p>
-  factions works!
-</p>
-
-<units></units>
+<div class='container'>
+  <div class='row' *ngFor='let faction of factions'>
+    <div class='col-xs-12'>
+      <a [routerLink]="['../unit-list', faction.name.toLocaleLowerCase()]">{{ faction.name }}</a>
+    </div>
+  </div>
+</div>
