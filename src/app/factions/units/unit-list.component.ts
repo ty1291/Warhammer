@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UnitService } from './unitService';
+import { IUnit } from './unit';
 
 @Component({
   selector: 'unit-list',
@@ -8,14 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UnitListComponent implements OnInit {
   faction: string;
+  unitList: IUnit[]
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private unitService: UnitService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.faction = params['faction'];
 
-      // api call to fetch corresponding faction unit list
+      this.unitService.getUnitList(this.faction).subscribe(res => {
+        this.unitList = res;
+      });
     });
   }
 

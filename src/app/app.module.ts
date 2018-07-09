@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MainAppComponent } from './main-app.component';
@@ -13,6 +14,7 @@ import { UnitDetailComponent } from './factions/units/unit-detail.component';
 
 import { appRoutes } from '../routes';
 import { FactionService } from './factions/factionService';
+import { UnitService } from './factions/units/unitService';
 
 @NgModule({
   declarations: [
@@ -26,10 +28,12 @@ import { FactionService } from './factions/factionService';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    FactionService
+    FactionService,
+    UnitService
   ],
   bootstrap: [MainAppComponent]
 })

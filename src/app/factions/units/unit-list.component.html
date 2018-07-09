@@ -1,12 +1,6 @@
-<table id="faction-units"  *ngIf="faction === 'ultramarines'">
-  <tr>
-    <th>Unit</th>
-    <th>Class</th>
-    <th>Weapon Type</th>
-  </tr>
-  <tr>
-    <td><a routerLink='/unit-detail'>Alfreds Futterkiste</a></td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+<table id='faction-units' class='table'>
+  <th>Name</th>
+  <tr *ngFor='let unit of unitList'>
+    <td>{{unit.name}}</td>
   </tr>
 </table>

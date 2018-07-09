@@ -1,5 +1,12 @@
 <div class='container'>
-  <div class='row' *ngFor='let faction of factions'>
+
+  <select [(ngModel)]='selectedType'>
+    <option [ngValue]='default'>Select an option</option>
+    <option [ngValue]='f.key' *ngFor='let f of uniqueTypes'>{{f.value}}</option>
+  </select>
+  <input type='button' value='Filter' (click)='filterFaction(selectedType)' />
+
+  <div class='row' *ngFor='let faction of filteredFactions'>
     <div class='col-xs-12'>
       <a [routerLink]="['../unit-list', faction.name.toLocaleLowerCase()]">{{ faction.name }}</a>
     </div>

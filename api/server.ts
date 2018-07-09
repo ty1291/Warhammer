@@ -25,15 +25,37 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/api/test', (req, res) => {
-  res.send('Hello World');
+app.get('/api/getFactionList', (req, res) => {
+
+  // replace with real data later
+  res.send([
+    { name: 'Ultramarines', type: 'Loyalist' },
+    { name: 'Blood Angels', type: 'Loyalist' },
+    { name: 'Dark Angels', type: 'Loyalist' },
+    { name: 'Imperial Fists', type: 'Loyalist' },
+    { name: 'Emperor\'s Children', type: 'Traitor' }
+  ]);
 });
 
-app.get('/api/getFactionList', (req, res) => {
-  res.send([
-    { name: 'Ultramarines' },
-    { name: 'Blood Angles'}
-  ]);
+app.get('/api/getUnitList/:faction', (req, res) => {
+  var faction = decodeURIComponent(req.params.faction);
+
+  // replace with real data later
+  var unitList = [
+    { name: 'Primaris Intercessor', factions: ['Ultramarines', 'Blood Angels'] },
+    { name: 'Primaris Aggressor', factions: ['Ultramarines', 'Blood Angels'] },
+    { name: 'Primaris Reiver', factions: ['Ultramarines'] },
+    { name: 'Primaris Inceptor', factions: ['Ultramarines', 'Blood Angels'] },
+    { name: 'Chaos Space Marine', factions: ['Emperor\'s Children'] }
+  ];
+
+  var filteredUnitList = unitList.filter(unit => {
+    return unit.factions.map((faction) => {
+      return faction.toLocaleLowerCase();
+    }).includes(faction);
+  });
+
+  res.send(filteredUnitList);
 });
 
 app.use( (req, res, next) => {

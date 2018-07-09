@@ -9,13 +9,40 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./factions.component.css']
 })
 export class FactionsComponent implements OnInit {
-  factions: IFaction[];
+  originalFactions: IFaction[];
+  filteredFactions: IFaction[];
+
+  uniqueTypes: any[];
+  selectedType: string;
 
   constructor(private factionService: FactionService) { }
 
   ngOnInit() {
       this.factionService.getFactionList().subscribe(data => {
-          this.factions = data;
+        this.originalFactions = data;
+        this.filteredFactions = data;
+
+        let filterFactionTypes = data.map(faction => {
+          return faction.type;
+        });
+
+        this.uniqueTypes = filterFactionTypes.filter((item, pos) => {
+          return filterFactionTypes.indexOf(item) === pos;
+        })
+        .map(item => {
+          return { key: item, value: item };
+        });
       });
+  }
+
+  filterFaction(type: string) {
+    if (!type) {
+      this.filteredFactions = this.originalFactions;
+      return true;
+    }
+
+    this.filteredFactions = this.originalFactions.filter(faction => {
+      return faction.type.toLocaleLowerCase() === type.toLocaleLowerCase();
+    });
   }
 }
