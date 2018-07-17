@@ -1,3 +1,14 @@
-<p>
-  unit-detail works!
-</p>
+<table id='unit-details' class='table' *ngIf="unitDetails">
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <td>{{unitDetails.name}}</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>{{unitDetails.type}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<input type='button' class='btn btn-default' value='Back' (click)='onBackClick()' />

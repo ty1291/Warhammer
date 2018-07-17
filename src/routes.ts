@@ -9,6 +9,6 @@ export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'factions', component: FactionsComponent },
   { path: 'unit-list/:faction', component: UnitListComponent },
-  { path: 'unit-detail', component: UnitDetailComponent },
+  { path: 'unit-detail/:unit', component: UnitDetailComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

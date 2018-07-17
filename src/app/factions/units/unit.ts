@@ -1,3 +1,4 @@
 export interface IUnit {
-  name: string
+  name: string;
+  type: string;
 }

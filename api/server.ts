@@ -58,6 +58,24 @@ app.get('/api/getUnitList/:faction', (req, res) => {
   res.send(filteredUnitList);
 });
 
+app.get('/api/getUnitDetails/:unit', (req, res) => {
+  var requestedUnit = decodeURIComponent(req.params.unit);
+
+  var unitDetailsList = [
+    { name: 'Primaris Intercessor', type: 'Primaris' },
+    { name: 'Primaris Aggressor', type: 'Primaris' },
+    { name: 'Primaris Reiver', type: 'Primaris' },
+    { name: 'Primaris Inceptor', type: 'Primaris' },
+    { name: 'Chaos Space Marine', type: 'Space Marine' }
+  ]
+
+  var filteredUnit = unitDetailsList.filter(unit => {
+    return unit.name.toLocaleLowerCase() === requestedUnit.toLocaleLowerCase();
+  })[0];
+
+  res.send(filteredUnit);
+});
+
 app.use( (req, res, next) => {
   res.status(404).send('Request route does not exist.');
 });

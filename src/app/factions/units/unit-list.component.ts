@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { UnitService } from './unitService';
 import { IUnit } from './unit';
 
@@ -10,9 +11,10 @@ import { IUnit } from './unit';
 })
 export class UnitListComponent implements OnInit {
   faction: string;
-  unitList: IUnit[]
+  unitList: IUnit[];
 
-  constructor(private route: ActivatedRoute, private unitService: UnitService) { }
+  constructor(private route: ActivatedRoute, private unitService: UnitService,
+              private location: Location) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -24,4 +26,7 @@ export class UnitListComponent implements OnInit {
     });
   }
 
+  onBackClick() {
+    return this.location.back();
+  }
 }

@@ -22,7 +22,7 @@ export class FactionsComponent implements OnInit {
         this.originalFactions = data;
         this.filteredFactions = data;
 
-        let filterFactionTypes = data.map(faction => {
+        const filterFactionTypes = data.map(faction => {
           return faction.type;
         });
 
@@ -44,5 +44,9 @@ export class FactionsComponent implements OnInit {
     this.filteredFactions = this.originalFactions.filter(faction => {
       return faction.type.toLocaleLowerCase() === type.toLocaleLowerCase();
     });
+  }
+
+  resetFilter() {
+    this.filteredFactions = this.originalFactions;
   }
 }

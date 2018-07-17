@@ -1,6 +1,14 @@
 <table id='faction-units' class='table'>
-  <th>Name</th>
-  <tr *ngFor='let unit of unitList'>
-    <td>{{unit.name}}</td>
-  </tr>
+  <thead>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    <tr *ngFor='let unit of unitList'>
+      <td>
+        <a [routerLink]="['/unit-detail/', unit.name.toLocaleLowerCase()]">{{unit.name}}</a>
+      </td>
+    </tr>
+  </tbody>
 </table>
+
+<input type='button' class='btn btn-default' value='Back' (click)='onBackClick()' />

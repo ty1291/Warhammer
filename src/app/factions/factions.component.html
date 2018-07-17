@@ -1,14 +1,16 @@
 <div class='container'>
-
-  <select [(ngModel)]='selectedType'>
-    <option [ngValue]='default'>Select an option</option>
-    <option [ngValue]='f.key' *ngFor='let f of uniqueTypes'>{{f.value}}</option>
-  </select>
-  <input type='button' value='Filter' (click)='filterFaction(selectedType)' />
-
-  <div class='row' *ngFor='let faction of filteredFactions'>
+  <div class='row'>
     <div class='col-xs-12'>
-      <a [routerLink]="['../unit-list', faction.name.toLocaleLowerCase()]">{{ faction.name }}</a>
+      <select [(ngModel)]='selectedType'>
+        <option [ngValue]='default'>Select an option</option>
+        <option [ngValue]='f.key' *ngFor='let f of uniqueTypes'>{{f.value}}</option>
+      </select>
+      <input type='button' value='Filter' (click)='filterFaction(selectedType)' />
+      <input type='button' value='Clear' (click)='resetFilter()' />
+
+      <div *ngFor='let faction of filteredFactions'>
+        <a [routerLink]="['/unit-list', faction.name.toLocaleLowerCase()]">{{ faction.name }}</a>
+      </div>
     </div>
   </div>
 </div>
